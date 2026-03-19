@@ -1,6 +1,7 @@
 package org.example.demo.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,11 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 3, max = 50, message ="Title must be between 3 and 50 characters")
     private String title;
+    @Size(min = 3, message = "Phai co 3 ky tu tro len")
     private String description;
+
     private boolean completed;
 
 }

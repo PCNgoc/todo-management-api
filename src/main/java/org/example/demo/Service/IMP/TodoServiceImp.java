@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.demo.Entity.Todo;
 import org.example.demo.Repository.TodoRepository;
 import org.example.demo.Service.TodoService;
+import org.example.demo.exception.CustomResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class TodoServiceImp implements TodoService {
 
     @Override
     public Todo findById(long id) {
-        return todoRepository.findById(id).orElse(null);
+        return todoRepository.findById(id).orElseThrow(() -> new CustomResourceNotFoundException("Todo Not Found for id: "+id));
     }
 
     @Override
